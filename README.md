@@ -6,8 +6,8 @@ Supports: PDW V2, Azure SQLDW, DDL and DML, schemas (version 2.4)
 ## Getting Started
 
 Download the DWScripter executable and run it in a command prompt or PowerShell window.
-DWScripter requires some paramters to identify the instance and databases to be scripted, as well as the object (DML, DDL or both).
-You can invoke DWScripter by passing all paramters, or use it in interactive mode by executing DWScripter.exe. DWScripter will prompt for any required information.
+DWScripter requires some parameters to identify the instance and databases to be scripted, as well as the object (DML, DDL or both).
+You can invoke DWScripter by passing all parameters, or use it in interactive mode by executing DWScripter.exe. DWScripter will prompt for any required information.
 Output file(s) will be placed in the same folder where DWScripter is being executed from.
 
 ## Current version is 1.0.0

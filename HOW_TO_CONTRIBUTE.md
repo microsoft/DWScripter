@@ -15,9 +15,9 @@ In order to build DWScripter you will need .NET Core 2.0.2
 
 ### **How to Build**
 
-Once you have obtained the source code and installed .NET Core 2.0.0 you can build the tool following below steps:
+Once you have obtained the source code and installed .NET Core 2.0.2 you can build the tool following below steps:
 
-1. Open a Command Prompt, Powershell or other shell window to the project's folder (the folder containing the DWScripter.csproj file)
+1. Open a Command Prompt, Powershell or other shell window to the project's src folder (the folder containing the DWScripter.csproj file)
 2. Run `dotnet build -r <runtime>`
 
 > Note: runtime is currently configured in DWScripter.csproj file as win10-x64. The `dotnet build` command (without further parameters) will build by default for that runtime. If you wish to build for different runtimes you can use the `-r <runtime>` option parameter to build for your specific needs. For a list of available runtimes see [.NET Core RID Catalog](https://docs.microsoft.com/en-us/dotnet/core/rid-catalog)
