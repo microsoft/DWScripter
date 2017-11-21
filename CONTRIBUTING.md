@@ -14,4 +14,4 @@ or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any addi
 
 ## Build and Test
 
-See [How To Contribute](.\HOW_TO_CONTRIBUTE.md)
+See [How To Contribute](./HOW_TO_CONTRIBUTE.md)
