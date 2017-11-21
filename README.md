@@ -1,14 +1,46 @@
+# Introduction
 
-# Contributing
+DWScripter is a scripting tool for Analytics Platform System and Azure SQLDW. This Console app will script the ddl and dml for both APS and SQLDW.
+Supports: PDW V2, Azure SQLDW, DDL and DML, schemas (version 2.4)
 
-This project welcomes contributions and suggestions.  Most contributions require you to agree to a
-Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
-the rights to use your contribution. For details, visit https://cla.microsoft.com.
+## Getting Started
 
-When you submit a pull request, a CLA-bot will automatically determine whether you need to provide
-a CLA and decorate the PR appropriately (e.g., label, comment). Simply follow the instructions
-provided by the bot. You will only need to do this once across all repos using our CLA.
+Download the DWScripter executable and run it in a command prompt or PowerShell window.
+DWScripter requires some paramters to identify the instance and databases to be scripted, as well as the object (DML, DDL or both).
+You can invoke DWScripter by passing all paramters, or use it in interactive mode by executing DWScripter.exe. DWScripter will prompt for any required information.
+Output file(s) will be placed in the same folder where DWScripter is being executed from.
 
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
-For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
-contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+## Current version is 1.0.0
+
+### USAGE
+
+    DWScripter <system> <server> <port> <database> <user> <password> <mode (DDL|DML|ALL)> <LIKE% filter> <output_file without extension>
+
+### Examples
+
+#### Analytics Platform System
+
+    DWScripter.exe APS 10.36.86.182 17001 dwsys sa <pwd> ALL % pdw_script
+
+#### Azure SQL Data Warehouse
+
+    DWScripter.exe SQLDW mydb.windows.database.net 1433 mydb sa <pwd> ALL % dw_script
+
+#### Interactive mode
+
+![Interactive](./images/Interactive.JPG)
+
+## Contributing
+
+If you are interested in fixing issues and contributing directly to the code base please see [contributing guidelines](./CONTRIBUTING.md)
+
+Please also review our [Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
+
+## Reporting Security Issues
+
+Security issues and bugs should be reported privately, via email, to the Microsoft Security
+Response Center (MSRC) at [secure@microsoft.com](mailto:secure@microsoft.com). You should
+receive a response within 24 hours. If for some reason you do not, please follow up via
+email to ensure we received your original message. Further information, including the
+[MSRC PGP](https://technet.microsoft.com/en-us/security/dn606155) key, can be found in
+the [Security TechCenter](https://technet.microsoft.com/en-us/security/default).
