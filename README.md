@@ -18,7 +18,7 @@ The Solution contains two projects:
 1. PDWScripter
 2. DWScripter
 
-**PDWScripter** is a class library project, made with the purpose of being reusable in custom projects to provide the Data Warehouse object scripting capability. For more information on using the library in your projects, please refer to [PDWScripter How To](./src/PDWScripter/Docs/PDWScripter_How_to.md) and to [PDWScripter License](./src/PDWScripter/Docs/LICENSE.txt)
+**PDWScripter** is a class library project, made with the purpose of being reusable in custom projects to provide the Data Warehouse object scripting capability. For more information on using the library in your projects, please refer to [PDWScripter How To](./src/PDWScripter/Docs/PDWScripter_How_to.md) and to [PDWScripter License](./src/PDWScripter/Docs/LICENSE)
 **DWScripter** is a console application that makes use of the PDWScripter library
 
 DWScripter requires some paramters to identify the instance and databases to be scripted, as well as the object (DML, DDL or both).
