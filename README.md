@@ -3,32 +3,34 @@
 DWScripter is a scripting tool for Analytics Platform System and Azure SQLDW. This Console app will script the ddl and dml for both APS and SQLDW.
 Supports: PDW V2, Azure SQLDW, DDL and DML, schemas (version 2.4)
 
+The project is intended as a cross platform tool, and as such is built on .NET Core SDK 2.0.2. You can build the solution and run the tool from the OS of your choice.
+
+## Requirements
+
+PDWScripter requires [Newtonsoft.json](https://github.com/JamesNK/Newtonsoft.Json) version 10.0.3 or above. You will need to add the package to your system. For more information and samples on how to add the package see [Newtonsoft.json NuGet page](https://www.nuget.org/packages/Newtonsoft.Json).
+
 ## Getting Started
 
-Download the DWScripter executable and run it in a command prompt or PowerShell window.
-DWScripter requires some parameters to identify the instance and databases to be scripted, as well as the object (DML, DDL or both).
-You can invoke DWScripter by passing all parameters, or use it in interactive mode by executing DWScripter.exe. DWScripter will prompt for any required information.
-Output file(s) will be placed in the same folder where DWScripter is being executed from.
+Dowload the sources and build DWScripter tool. For building instructions see [How To Contribute](./HOW_TO_CONTRIBUTE.md)
+
+The Solution contains two projects:
+
+1. PDWScripter
+2. DWScripter
+
+**PDWScripter** is a class library project, made with the purpose of being reusable in custom projects to provide the Data Warehouse object scripting capability. For more information on using the library in your projects, please refer to [PDWScripter How To](./src/PDWScripter/Docs/PDWScripter_How_to.md) and to [PDWScripter License](./src/PDWScripter/Docs/LICENSE.txt)
+**DWScripter** is a console application that makes use of the PDWScripter library
+
+DWScripter requires some paramters to identify the instance and databases to be scripted, as well as the object (DML, DDL or both).
+
+You must invoke DWScripter passing all the required parameters.
+For more information on the tool usage see [Usage](./USAGE.md)
 
 ## Current version is 1.0.0
 
 ### USAGE
 
-    DWScripter <system> <server> <port> <database> <user> <password> <mode (DDL|DML|ALL)> <LIKE% filter> <output_file without extension>
-
-### Examples
-
-#### Analytics Platform System
-
-    DWScripter.exe APS 10.36.86.182 17001 dwsys sa <pwd> ALL % pdw_script
-
-#### Azure SQL Data Warehouse
-
-    DWScripter.exe SQLDW mydb.windows.database.net 1433 mydb sa <pwd> ALL % dw_script
-
-#### Interactive mode
-
-![Interactive](./images/Interactive.JPG)
+For more information on the tool usage see [Usage](./USAGE.md)
 
 ## Contributing
 
