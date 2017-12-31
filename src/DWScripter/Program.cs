@@ -224,10 +224,11 @@ namespace DWScripter
             Console.WriteLine("     [-Pt: password target]");
             Console.WriteLine("     [-F: filter on feature for scripting]");
             Console.WriteLine("     [-Fp: filters file path] no space allowed");
+            Console.WriteLine("     [-X: Exclusion Filter");
             Console.WriteLine();
-            Console.WriteLine(@"Sample : DWScripter -S:pdwcontrolbuild,17001 -D:ATLAS_STG_DEV -E -O:C:\TFS_RPA\Atlas\Dev\Atlas\Atlas_DW\ATLAS_STG -M:PersistStructure");
-            Console.WriteLine(@"Sample : DWScripter -St:pdwcontrolbuild,17001 -Dt:ATLAS_STG_INT -E -O:C:\TFS_RPA\Atlas\Dev\Atlas\Atlas_DW\ATLAS_STG -M:CompareFromFile -F:ALL");
-            Console.WriteLine(@"Sample : DWScripter -St:pdwcontrolbuild,17001 -Dt:ATLAS_STG_INT -E -O:C:\TFS_RPA\Atlas\Dev\Atlas\Atlas_DW\ATLAS_STG -M:CompareFromFile -F:DSN_SPRINT2 -Fp:C:\Data\DW_Databases\GlobalDWFilterSettings.json -d:ATLAS_STG");
+            Console.WriteLine(@"Sample : DWScripter -S:192.168.1.1,17001 -D:ATLAS_STG_DEV -E -O:C:\DW_SRC\FabrikamDW_STG -M:PersistStructure");
+            Console.WriteLine(@"Sample : DWScripter -St:192.168.1.1,17001 -Dt:ATLAS_STG_INT -E -O:C:\DW_SRC\FabrikamDW_STG -M:CompareFromFile -F:ALL");
+            Console.WriteLine(@"Sample : DWScripter -St:192.168.1.1,17001 -Dt:ATLAS_STG_INT -E -O:C:\DW_SRC\FabrikamDW_STG -M:CompareFromFile -F:DSN_SPRINT2 -Fp:C:\Data\DW_Databases\GlobalDWFilterSettings.json -d:ATLAS_STG");
             return;
         }
         static Dictionary<string,string>  GetParametersFromArguments (string[] args)

@@ -98,10 +98,10 @@ C:\Dev\APS\DW_STG_DML.dsql
 
 ```PowerShell
 #Parallel Data Warehouse syntax
-.\DWScripter.exe -S:102.168.1.1,17001 -D:Fabrikam_STG_DEV -U:<userlogin> -P:<userPassword> -O:C:\Dev\APS\DW_STG -M:Full
+.\DWScripter.exe -S:192.168.1.1,17001 -D:Fabrikam_STG_DEV -U:<userlogin> -P:<userPassword> -O:C:\Dev\APS\DW_STG -M:Full
 
 #Azure SQL Data Warehouse Syntax
-.\DWScripter.exe -S:pdwcontrolbuild.database.windows.net -D:Fabrikam_STG_DEV -U:<userlogin> -P:<userPassword> -O:C:\Dev\APS\DW_STG -M:Full
+.\DWScripter.exe -S:FabrikamDW.database.windows.net -D:Fabrikam_STG_DEV -U:<userlogin> -P:<userPassword> -O:C:\Dev\APS\DW_STG -M:Full
 ```
 
 ### **Script all objects in .json file**
@@ -113,10 +113,10 @@ C:\Dev\APS\DW_STG_DML.json
 
 ```PowerShell
 #Parallel Data Warehouse syntax
-.\DWScripter.exe -S:102.168.1.1,17001 -D:Fabrikam_STG_DEV -U:<userlogin> -P:<userPassword> -O:C:\Dev\APS\DW_STG -M:PersistStructure
+.\DWScripter.exe -S:192.168.1.1,17001 -D:Fabrikam_STG_DEV -U:<userlogin> -P:<userPassword> -O:C:\Dev\APS\DW_STG -M:PersistStructure
 
 #Azure SQL Data Warehouse syntax
-.\DWScripter.exe -S:pdwcontrolbuild.database.windows.net -D:Fabrikam_STG_DEV -U:<userlogin> -P:<userPassword> -O:C:\Dev\APS\DW_STG -M:PersistStructure
+.\DWScripter.exe -S:FabrikamDW.database.windows.net -D:Fabrikam_STG_DEV -U:<userlogin> -P:<userPassword> -O:C:\Dev\APS\DW_STG -M:PersistStructure
 ```
 
 ### **Compare two databases and generate a delta .dsql script**
@@ -125,10 +125,10 @@ This syntax will generate delta .dsql scripts and a warning script. The warning 
 
 ```PowerShell
 #Parallel Data Warehouse syntax
-.\DWScripter.exe -S:102.168.1.1,17001 -D:Fabrikam_DWH_DEV -O:C:\Dev\APS\DW_STG-M:Compare -U:<userlogin> -P:<userPassword> -St:10.192.168.10,17001 -Dt:Fabrikam_DWH_INT -Ut:<Targetuserlogin> -Pt:<TargetuserPassword> -F:All
+.\DWScripter.exe -S:192.168.1.1,17001 -D:Fabrikam_DWH_DEV -O:C:\Dev\APS\DW_STG-M:Compare -U:<userlogin> -P:<userPassword> -St:10.192.168.10,17001 -Dt:Fabrikam_DWH_INT -Ut:<Targetuserlogin> -Pt:<TargetuserPassword> -F:All
 
 #Azure SQL Data Warehouse syntax
-.\DWScripter.exe -S:pdwcontrolbuild.database.windows.net -D:Fabrikam_DWH_DEV -O:C:\Dev\APS\DW_STG -M:Compare -U:<userlogin> -P:<userPassword> -St:pdwQA.database.windows.net -Dt:Fabrikam_DWH_INT -Ut:<Targetuserlogin> -Pt:<TargetuserPassword> -F:All
+.\DWScripter.exe -S:FabrikamDW.database.windows.net -D:Fabrikam_DWH_DEV -O:C:\Dev\APS\DW_STG -M:Compare -U:<userlogin> -P:<userPassword> -St:pdwQA.database.windows.net -Dt:Fabrikam_DWH_INT -Ut:<Targetuserlogin> -Pt:<TargetuserPassword> -F:All
 ```
 
 ### **Compare a database to a persisted structure**
@@ -147,10 +147,10 @@ C:\Dev\APS\DW_STG_warning.dsql
 
 ```PowerShell
 #Parallel Data Warehouse syntax
-.\DWScripter.exe -U:<userlogin> -P:<userPassword> -D:Fabrikam_DWH -O:C:\Dev\APS\DW_STG -M:CompareFromFile -St:102.168.1.1,17001 -Dt:Fabrikam_DWH_INT -F:QA_SPRINT2 -Fp:"C:\Data\APS_Databases\GlobalAPSFilterSettings.json"
+.\DWScripter.exe -U:<userlogin> -P:<userPassword> -D:Fabrikam_DWH -O:C:\Dev\APS\DW_STG -M:CompareFromFile -St:192.168.1.1,17001 -Dt:Fabrikam_DWH_INT -F:QA_SPRINT2 -Fp:"C:\Data\APS_Databases\GlobalAPSFilterSettings.json"
 
 #Azure SQL Data Warehouse syntax
-.\DWScripter.exe -U:<userlogin> -P:<userPassword> -D:Fabrikam_DWH -O:C:\Dev\APS\DW_STG -M:CompareFromFile -St:pdwcontrolbuild.database.windows.net -Dt:Fabrikam_DWH_INT -F:QA_SPRINT2 -Fp:"C:\Data\APS_Databases\GlobalAPSFilterSettings.json"
+.\DWScripter.exe -U:<userlogin> -P:<userPassword> -D:Fabrikam_DWH -O:C:\Dev\APS\DW_STG -M:CompareFromFile -St:FabrikamDW.database.windows.net -Dt:Fabrikam_DWH_INT -F:QA_SPRINT2 -Fp:"C:\Data\APS_Databases\GlobalAPSFilterSettings.json"
 ```
 
 ### **Exclude all _dev objects from scripting**
@@ -159,10 +159,10 @@ This syntax will script out only objects which names do not contain ```_dev```
 
 ```PowerShell
 #Parallel Data Warehouse syntax
-.\DWScripter.exe -S:102.168.1.1,17001 -D:Fabrikam_STG_DEV -U:<userlogin> -P:<userPassword> -O:C:\Dev\APS\DW_STG -M:Full -X:"_dev"
+.\DWScripter.exe -S:192.168.1.1,17001 -D:Fabrikam_STG_DEV -U:<userlogin> -P:<userPassword> -O:C:\Dev\APS\DW_STG -M:Full -X:"_dev"
 
 #Azure SQL Data Warehouse Syntax
-.\DWScripter.exe -S:pdwcontrolbuild.database.windows.net -D:Fabrikam_STG_DEV -U:<userlogin> -P:<userPassword> -O:C:\Dev\APS\DW_STG -M:Full -X:"_dev"
+.\DWScripter.exe -S:FabrikamDW.database.windows.net -D:Fabrikam_STG_DEV -U:<userlogin> -P:<userPassword> -O:C:\Dev\APS\DW_STG -M:Full -X:"_dev"
 ```
 
 ### **Only script _dev or _test objects**
@@ -171,10 +171,10 @@ This syntax will only script out objects which names contain ```_dev``` or ```_t
 
 ```PowerShell
 #Parallel Data Warehouse syntax
-.\DWScripter.exe -S:102.168.1.1,17001 -D:Fabrikam_STG_DEV -E -O:C:\Dev\APS\DW_STG -M:Full -X:"^((?!_dev|_test).)*$"
+.\DWScripter.exe -S:192.168.1.1,17001 -D:Fabrikam_STG_DEV -E -O:C:\Dev\APS\DW_STG -M:Full -X:"^((?!_dev|_test).)*$"
 
 #Azure SQL Data Warehouse Syntax
-.\DWScripter.exe -S:pdwcontrolbuild.database.windows.net -D:Fabrikam_STG_DEV -E -O:C:\Dev\APS\DW_STG -M:Full -X:"^((?!_dev|_test).)*$"
+.\DWScripter.exe -S:FabrikamDW.database.windows.net -D:Fabrikam_STG_DEV -E -O:C:\Dev\APS\DW_STG -M:Full -X:"^((?!_dev|_test).)*$"
 ```
 
 ### **Running from Linux**
@@ -187,7 +187,7 @@ home/DWAdmin/Documents/DW_STG_DML.dsql
 ```bash
 #Running the compiled code
 #Open a shell window to the path of the compiled code
-dotnet DWScripter.dll -S:pdwcontrolbuild.database.windows.net -D:Fabrikam_STG_DEV -U:<userlogin> -P:<userPassword> -O:/home/DWAdmin/Documents/DW_STG -M:Full
+dotnet DWScripter.dll -S:FabrikamDW.database.windows.net -D:Fabrikam_STG_DEV -U:<userlogin> -P:<userPassword> -O:/home/DWAdmin/Documents/DW_STG -M:Full
 ```
 
 You can run also the DWScripter from the project folder using the [```dotnet run``` syntax](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-run?tabs=netcore2x).
@@ -196,5 +196,5 @@ You can run also the DWScripter from the project folder using the [```dotnet run
 #Running from the project file
 #Open a shell window to the path of the project file (DWScripter.csproj).
 #The project parameter (-p) is optional when running from a path taht contains the project file.
-dotnet run [-p DWScripter.csproj] -S:pdwcontrolbuild.database.windows.net -D:Fabrikam_STG_DEV -U:<userlogin> -P:<userPassword> -O:/home/DWAdmin/Documents/DW_STG -M:Full
+dotnet run [-p DWScripter.csproj] -S:FabrikamDW.database.windows.net -D:Fabrikam_STG_DEV -U:<userlogin> -P:<userPassword> -O:/home/DWAdmin/Documents/DW_STG -M:Full
 ```
