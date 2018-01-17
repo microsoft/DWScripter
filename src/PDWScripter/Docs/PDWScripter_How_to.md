@@ -1,6 +1,6 @@
-# Including PDWScripter in your projects
+ Including PDWScripter in your projects
 
->NOTE: Before including PDWScripter libarry in your projects please review the [PDWScripter License](./LICENSE.md).
+>NOTE: Before including PDWScripter library in your projects please review the [PDWScripter License](./LICENSE.md).
 
 In order to include PDWScripter in your project you can:
 
