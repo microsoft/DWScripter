@@ -121,7 +121,11 @@ C:\Dev\APS\DW_STG_DML.json
 
 ### **Compare two databases and generate a delta .dsql script**
 
-This syntax will generate delta .dsql scripts and a warning script. The warning file will contain statements that might lead to data loss (DROP table, DROP column...). Access to both databases is required.
+This syntax will generate delta .dsql scripts and a warning script. The warning file will contain statements that might lead to data loss (DROP table, DROP column...). Access to both databases is required. The following files will be generated
+
+C:\Dev\APS\DW_STG_DDL.dsql
+C:\Dev\APS\DW_STG_DML.dsql
+C:\Dev\APS\DW_STG_DDL.warn
 
 ```PowerShell
 #Parallel Data Warehouse syntax
@@ -143,14 +147,14 @@ and the following files will be generated
 
 C:\Dev\APS\DW_STG_DDL.dsql
 C:\Dev\APS\DW_STG_DML.dsql
-C:\Dev\APS\DW_STG_warning.dsql
+C:\Dev\APS\DW_STG_DDL.warn
 
 ```PowerShell
 #Parallel Data Warehouse syntax
-.\DWScripter.exe -U:<userlogin> -P:<userPassword> -D:Fabrikam_DWH -O:C:\Dev\APS\DW_STG -M:CompareFromFile -St:192.168.1.1,17001 -Dt:Fabrikam_DWH_INT -F:QA_SPRINT2 -Fp:"C:\Data\APS_Databases\GlobalAPSFilterSettings.json"
+.\DWScripter.exe -Ut:<userlogin> -Pt:<userPassword> -D:Fabrikam_DWH -O:C:\Dev\APS\DW_STG -M:CompareFromFile -St:192.168.1.1,17001 -Dt:Fabrikam_DWH_INT -F:QA_SPRINT2 -Fp:"C:\Data\APS_Databases\GlobalAPSFilterSettings.json"
 
 #Azure SQL Data Warehouse syntax
-.\DWScripter.exe -U:<userlogin> -P:<userPassword> -D:Fabrikam_DWH -O:C:\Dev\APS\DW_STG -M:CompareFromFile -St:FabrikamDW.database.windows.net -Dt:Fabrikam_DWH_INT -F:QA_SPRINT2 -Fp:"C:\Data\APS_Databases\GlobalAPSFilterSettings.json"
+.\DWScripter.exe -Ut:<userlogin> -Pt:<userPassword> -D:Fabrikam_DWH -O:C:\Dev\APS\DW_STG -M:CompareFromFile -St:FabrikamDW.database.windows.net -Dt:Fabrikam_DWH_INT -F:QA_SPRINT2 -Fp:"C:\Data\APS_Databases\GlobalAPSFilterSettings.json"
 ```
 
 ### **Exclude all _dev objects from scripting**
