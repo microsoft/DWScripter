@@ -99,7 +99,7 @@ namespace DWScripter
                 return;
             }
 
-            if (mode == "Compare" & (String.IsNullOrEmpty(serverTarget) || String.IsNullOrEmpty(strportTarget) || String.IsNullOrEmpty(TargetDb)))
+            if (mode == "Compare" & (String.IsNullOrEmpty(serverTarget) || String.IsNullOrEmpty(TargetDb)))
             {
                 Console.WriteLine("Target Database elements must be completed ...");
                 return;
