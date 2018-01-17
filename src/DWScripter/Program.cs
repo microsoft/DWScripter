@@ -280,7 +280,7 @@ namespace DWScripter
                 Environment.Exit(1);
             }
 
-            // check feature switch existence when wok mode different from PERSISTSTRUCTURE or FULL mode
+            // check feature switch existence when work mode different from PERSISTSTRUCTURE or FULL mode
             if (parameters["-M"].ToUpper() != "PERSISTSTRUCTURE" && parameters["-M"].ToUpper() != "FULL")
             {
                 if (!parameters.ContainsKey("-F"))
@@ -290,13 +290,13 @@ namespace DWScripter
                 }
                 else
                 {
-                    if (!parameters.ContainsKey("-D") && ModeList.Contains(parameters["-F"].ToUpper()).ToString() != "ALL")
+                    if (!parameters.ContainsKey("-D") && parameters["-F"].ToUpper() != "ALL")
                     {
                         Console.WriteLine("Argument -D is missing [Database Name], fill it to continue");
                         Environment.Exit(1);
                     }
 
-                    if (!parameters.ContainsKey("-Fp") && ModeList.Contains(parameters["-F"].ToUpper()).ToString() != "ALL")
+                    if (!parameters.ContainsKey("-Fp") && parameters["-F"].ToUpper() != "ALL")
                     {
                         Console.WriteLine("Argument -Fp is missing [Filter file], fill it to continue");
                         Environment.Exit(1);
