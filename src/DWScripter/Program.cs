@@ -35,6 +35,7 @@ namespace DWScripter
             string pwdTarget = "";
             string featureToScript = "";
             string FiltersFilePath ="" ;
+            string CommandTimeout ="";
 
             Dictionary<String, String> parameters = new Dictionary<string, string>();
             parameters = GetParametersFromArguments(args);
@@ -88,6 +89,9 @@ namespace DWScripter
                     case "-X":
                         ExcludeObjectSuffixList = parameters[pKey];
                         break;
+                    case "-t":
+                        CommandTimeout = parameters[pKey];
+                        break;
                     default:
                         break;
                 }
@@ -112,7 +116,7 @@ namespace DWScripter
             {
                 if (mode == "Full" || mode == "Delta" || mode == "Compare" || mode == "PersistStructure")
                 {
-                    c = new PDWscripter(system, server, sourceDb, authentication, userName, pwd, wrkMode, ExcludeObjectSuffixList, filterSpec, mode);
+                    c = new PDWscripter(system, server, sourceDb, authentication, userName, pwd, wrkMode, ExcludeObjectSuffixList, filterSpec, mode, CommandTimeout);
                     if (mode == "PersistStructure")
                         // populate dbstruct class
                         c.getDbstructure(outFile, wrkMode, true);
@@ -177,7 +181,7 @@ namespace DWScripter
                         Console.WriteLine("Filter settings OK");
                     }
 
-                        cTarget = new PDWscripter(system, serverTarget, TargetDb, authentication, userNameTarget, pwdTarget, wrkMode, "%", filterSpec, mode);
+                        cTarget = new PDWscripter(system, serverTarget, TargetDb, authentication, userNameTarget, pwdTarget, wrkMode, "%", filterSpec, mode,CommandTimeout);
                         Console.WriteLine("Target Connection Opened");
                         cTarget.getDbstructure(outFile, wrkMode, false);
                         if (mode != "CompareFromFile")
@@ -225,6 +229,7 @@ namespace DWScripter
             Console.WriteLine("     [-F: filter on feature for scripting]");
             Console.WriteLine("     [-Fp: filters file path] no space allowed");
             Console.WriteLine("     [-X: Exclusion Filter");
+            Console.WriteLine("     [-t: Command Timeout]");
             Console.WriteLine();
             Console.WriteLine(@"Sample : DWScripter -S:192.168.1.1,17001 -D:Fabrikam_Dev -E -O:C:\DW_SRC\FabrikamDW_STG -M:PersistStructure");
             Console.WriteLine(@"Sample : DWScripter -St:192.168.1.1,17001 -Dt:Fabrikam_INT -E -O:C:\DW_SRC\FabrikamDW_STG -M:CompareFromFile -F:ALL");
@@ -234,7 +239,7 @@ namespace DWScripter
         static Dictionary<string,string>  GetParametersFromArguments (string[] args)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
-            string ParametersList = "-S|-D|-E|-M|-O|-St|-Dt|-U|-P|-Ut|-Pt|-W|-F|-Fp|X";
+            string ParametersList = "-S|-D|-E|-M|-O|-St|-Dt|-U|-P|-Ut|-Pt|-W|-F|-Fp|-X|-t";
             List<string> ParametersHelp = new List<string> { "-help", "-?", "/?" };
             List<string> ModeList = new List<string> { "FULL", "COMPARE", "COMPAREFROMFILE", "PERSISTSTRUCTURE" };
             Regex Plist = new Regex(ParametersList);

@@ -22,6 +22,7 @@ DWScripter
       -F: filter on feature for scripting
       -Fp: filters file path, no space allowed
       -X: Exclusion filter
+      -t: Command Timoute
       -?, -h, --help: (usage)
 
 ````
@@ -77,6 +78,9 @@ Filters to apply to file path. The Json files are automatically selected based o
 
 **-X:**
 Regular expression pattern to define object exclusions. Objects which names match the regular expression provided will be excluded from the scripting.
+
+**-t:**
+The time in seconds to wait for the command to execute.
 
 ## Limitations and Restrictions
 
