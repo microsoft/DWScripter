@@ -891,6 +891,7 @@ namespace DWScripter
                 "left join sys.columns c on c.column_id = i.column_id and c.object_id = i.object_id " +
                 "where i.index_id = 1 and si.[type] <> 2 and " +
                 "i.object_id = (select object_id from sys.tables where schema_name(schema_id) + '.' + name = '" + sourceTable + "') " +
+                "and i.partition_ordinal = 0" + 
                 "order by key_ordinal ";
 
                 rdr = cmd.ExecuteReader();
