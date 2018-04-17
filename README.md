@@ -26,7 +26,9 @@ DWScripter requires some paramters to identify the instance and databases to be 
 You must invoke DWScripter passing all the required parameters.
 For more information on the tool usage see [Usage](./USAGE.md)
 
-## Current version is 1.0.0
+## Current version is 1.1.0
+
+See [ChangeLog](./ChangeLog.md)
 
 ### USAGE
 
