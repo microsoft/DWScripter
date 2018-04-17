@@ -51,6 +51,7 @@ namespace DWScripter
         private string partitionLeftOrRight;
         private string filterSpec;
         public string ExcludeObjectSuffixList;
+        private string CommandTimeout;
         private string wrkMode;
         private string scriptMode;
         private List<NonclusteredIndexDef> nonclusteredIndexes;
@@ -71,7 +72,7 @@ namespace DWScripter
             dbTables = new List<TableDef>();
             dbstruct = new DBStruct();
         }
-        public PDWscripter(string system, string server, string sourceDb, string authentication, string userName, string pwd, string wrkMode, string ExcludeObjectSuffixList, string filterSpec, string scriptMode)
+        public PDWscripter(string system, string server, string sourceDb, string authentication, string userName, string pwd, string wrkMode, string ExcludeObjectSuffixList, string filterSpec, string scriptMode, string CommandTimeout)
         {
             DatabaseName = sourceDb;
             cols = new List<ColumnDef>();
@@ -87,6 +88,7 @@ namespace DWScripter
             this.sourceDb = sourceDb;
             this.destDb = sourceDb;         // For future DB cloning 
             this.scriptMode = scriptMode;
+            this.CommandTimeout = CommandTimeout;
 
             SqlConnectionStringBuilder constrbuilder = new SqlConnectionStringBuilder();
 
@@ -116,9 +118,24 @@ namespace DWScripter
 
 
             cmd = new System.Data.SqlClient.SqlCommand();
+            //sets non default timeout
+            if(!String.IsNullOrEmpty(this.CommandTimeout))
+            {
+                cmd.CommandTimeout = Convert.ToInt32(this.CommandTimeout);
+                
+            }
+            Console.WriteLine("Current Command Timeout: " + cmd.CommandTimeout);
 
-            conn.Open();
-            cmd.Connection = conn;
+            try {
+                conn.Open();
+                cmd.Connection = conn;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw ex;
+            }
+            
         }
 
         private void getSchemas(StreamWriter sw, Boolean GetStructure)
@@ -874,6 +891,7 @@ namespace DWScripter
                 "left join sys.columns c on c.column_id = i.column_id and c.object_id = i.object_id " +
                 "where i.index_id = 1 and si.[type] <> 2 and " +
                 "i.object_id = (select object_id from sys.tables where schema_name(schema_id) + '.' + name = '" + sourceTable + "') " +
+                "and i.partition_ordinal = 0" + 
                 "order by key_ordinal ";
 
                 rdr = cmd.ExecuteReader();
