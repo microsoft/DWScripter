@@ -107,6 +107,8 @@ namespace DWScripter
                 else
                 {
                     constrbuilder.IntegratedSecurity = true;
+                  //  constrbuilder.Encrypt = true;
+                  //  constrbuilder.TrustServerCertificate = true;
                 }
                 conn.ConnectionString = constrbuilder.ConnectionString;
                 
@@ -491,7 +493,7 @@ namespace DWScripter
                 "from sys.tables so left join sys.external_tables et on so.object_id = et.object_id " +
                 "JOIN sys.pdw_table_distribution_properties AS tdp ON so.object_id = tdp.object_id " +
                 "where et.name is NULL and so.type = 'U' " +
-                "and so.name like '" + filterSpec + "' " +
+                 "and schema_name(so.schema_id) + '.' + so.name like '" + filterSpec + "' " +
                 "order by so.name ";
 
             rdr = cmd.ExecuteReader();
@@ -949,6 +951,8 @@ namespace DWScripter
             {
                 clusteredspec.Append(")");
             }
+            else if (clusteredClause.Length == 0 && !isCCI)
+            { clusteredspec.Append("HEAP"); }
 
             clusteredClause = clusteredspec.ToString();
         }
@@ -1457,7 +1461,9 @@ namespace DWScripter
 
 
             // Adaptation to sort by dependency
-            cmd.CommandText = "select definition, object_name(object_id) from sys.sql_modules order by definition;";
+            cmd.CommandText = "SELECT definition, object_name(M.object_id) from sys.sql_modules m JOIN SYS.OBJECTS o ON M.OBJECT_ID = o.OBJECT_ID " +
+            "WHERE SCHEMA_NAME(SCHEMA_ID) +'.' + object_name(M.object_id) LIKE '" + filterSpec + "' order by definition;";
+            //cmd.CommandText = "select definition, object_name(object_id) from sys.sql_modules order by definition;";
 
             rdr = cmd.ExecuteReader();
 

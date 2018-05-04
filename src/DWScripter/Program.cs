@@ -26,6 +26,8 @@ namespace DWScripter
             string outFile = "";
             string system = "PDW";
             string authentication = "SQL";
+            string encriptSQLConneciton = "false";
+            string trustServerCertificate = "true";
             string mode = "";
             string ExcludeObjectSuffixList = " "; //"_old|_new|_test|_dba";  // used to exclude test or non-user objects;
             string serverTarget = "";
@@ -63,7 +65,7 @@ namespace DWScripter
                         wrkMode = parameters[pKey];
                         break;
                     case "-M":
-                        mode = parameters[pKey];
+                        mode = parameters[pKey].ToUpper();
                         break;
                     case "-St":
                         serverTarget = parameters[pKey];
@@ -103,7 +105,7 @@ namespace DWScripter
                 return;
             }
 
-            if (mode == "Compare" & (String.IsNullOrEmpty(serverTarget) || String.IsNullOrEmpty(TargetDb)))
+            if (mode == "COMPARE" & (String.IsNullOrEmpty(serverTarget) || String.IsNullOrEmpty(TargetDb)))
             {
                 Console.WriteLine("Target Database elements must be completed ...");
                 return;
@@ -114,31 +116,31 @@ namespace DWScripter
             Boolean SourceFromFile = false;
             try
             {
-                if (mode == "Full" || mode == "Delta" || mode == "Compare" || mode == "PersistStructure")
+                if (mode == "FULL" || mode == "DELTA" || mode == "COMPARE" || mode == "PERSISTSTRUCTURE")
                 {
                     c = new PDWscripter(system, server, sourceDb, authentication, userName, pwd, wrkMode, ExcludeObjectSuffixList, filterSpec, mode, CommandTimeout);
-                    if (mode == "PersistStructure")
+                    if (mode == "PERSISTSTRUCTURE")
                         // populate dbstruct class
                         c.getDbstructure(outFile, wrkMode, true);
-                    if (mode == "Compare")
+                    if (mode == "COMPARE")
                         c.getDbstructure(outFile, wrkMode, false);
                 }
                 else
                     c = new PDWscripter();
 
                 // generate full database script
-                if (mode == "Full" || mode == "Delta")
+                if (mode == "FULL" || mode == "DELTA")
                 {
                     c.getDbTables(false);
                     c.IterateScriptAllTables(c, outFile);
                 }
-                if (mode == "Compare" || mode == "CompareFromFile")
+                if (mode == "COMPARE" || mode == "COMPAREFROMFILE")
                 {
                     SourceFromFile = false;
 
                     if (wrkMode == "ALL" || wrkMode == "DDL")
                     {
-                        if (mode == "CompareFromFile")
+                        if (mode == "COMPAREFROMFILE")
                         {
                             // retrieve database structure from JSON DDL file
                             SourceFromFile = true;
@@ -151,7 +153,7 @@ namespace DWScripter
                             c.getDbTables(false);
                     }
 
-                    if (mode == "CompareFromFile")
+                    if (mode == "COMPAREFROMFILE")
                     {
                         if (wrkMode == "ALL" || wrkMode == "DML")
                         {
@@ -184,7 +186,7 @@ namespace DWScripter
                         cTarget = new PDWscripter(system, serverTarget, TargetDb, authentication, userNameTarget, pwdTarget, wrkMode, "%", filterSpec, mode,CommandTimeout);
                         Console.WriteLine("Target Connection Opened");
                         cTarget.getDbstructure(outFile, wrkMode, false);
-                        if (mode != "CompareFromFile")
+                        if (mode != "COMPAREFROMFILE")
                             cTarget.getDbTables(false);
 
                         cTarget.CompIterateScriptAllTables(c, cTarget, outFile, SourceFromFile, Filters);
