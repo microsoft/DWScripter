@@ -155,10 +155,10 @@ C:\Dev\APS\DW_STG_DDL.warn
 
 ```PowerShell
 #Parallel Data Warehouse syntax
-.\DWScripter.exe -Ut:<userlogin> -Pt:<userPassword> -D:Fabrikam_DWH -O:C:\Dev\APS\DW_STG -M:CompareFromFile -St:192.168.1.1,17001 -Dt:Fabrikam_DWH_INT -F:QA_SPRINT2 -Fp:"C:\Data\APS_Databases\GlobalAPSFilterSettings.json"
+.\DWScripter.exe -Ut:<userlogin> -Pt:<userPassword> -D:Fabrikam_DWH -O:C:\Dev\APS\DW_STG -M:CompareFromFile -St:192.168.1.1,17001 -Dt:Fabrikam_DWH_INT -F:ALL
 
 #Azure SQL Data Warehouse syntax
-.\DWScripter.exe -Ut:<userlogin> -Pt:<userPassword> -D:Fabrikam_DWH -O:C:\Dev\APS\DW_STG -M:CompareFromFile -St:FabrikamDW.database.windows.net -Dt:Fabrikam_DWH_INT -F:QA_SPRINT2 -Fp:"C:\Data\APS_Databases\GlobalAPSFilterSettings.json"
+.\DWScripter.exe -Ut:<userlogin> -Pt:<userPassword> -D:Fabrikam_DWH -O:C:\Dev\APS\DW_STG -M:CompareFromFile -St:FabrikamDW.database.windows.net -Dt:Fabrikam_DWH_INT -F:ALL
 ```
 
 ### **Exclude all _dev objects from scripting**
