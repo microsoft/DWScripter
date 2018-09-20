@@ -118,6 +118,10 @@ namespace DWScripter
             {
                 if (mode == "FULL" || mode == "DELTA" || mode == "COMPARE" || mode == "PERSISTSTRUCTURE")
                 {
+                    if (mode == "FULL" && featureToScript != "ALL")
+                    {
+                        filterSpec = featureToScript;
+                    }
                     c = new PDWscripter(system, server, sourceDb, authentication, userName, pwd, wrkMode, ExcludeObjectSuffixList, filterSpec, mode, CommandTimeout);
                     if (mode == "PERSISTSTRUCTURE")
                         // populate dbstruct class
