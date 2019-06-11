@@ -102,10 +102,10 @@ C:\Dev\APS\DW_STG_DML.dsql
 
 ```PowerShell
 #Parallel Data Warehouse syntax
-.\DWScripter.exe -S:192.168.1.1,17001 -D:Fabrikam_STG_DEV -U:<userlogin> -P:<userPassword> -O:C:\Dev\APS\DW_STG -M:Full
+.\DWScripter.exe -S:192.168.1.1,17001 -D:Fabrikam_STG_DEV -U:<userlogin> -P:<userPassword> -O:C:\Dev\APS\DW_STG -M:Full -W:ALL -F:ALL
 
 #Azure SQL Data Warehouse Syntax
-.\DWScripter.exe -S:FabrikamDW.database.windows.net -D:Fabrikam_STG_DEV -U:<userlogin> -P:<userPassword> -O:C:\Dev\APS\DW_STG -M:Full
+.\DWScripter.exe -S:FabrikamDW.database.windows.net -D:Fabrikam_STG_DEV -U:<userlogin> -P:<userPassword> -O:C:\Dev\APS\DW_STG -M:Full -W:ALL -F:ALL
 ```
 
 ### **Script all objects in .json file**
