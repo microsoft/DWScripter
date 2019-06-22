@@ -51,7 +51,7 @@ namespace DWScripter
         private string partitionLeftOrRight;
         private string filterSpec;
         public string ExcludeObjectSuffixList;
-        private string CommandTimeout;
+        private int? CommandTimeout;
         private string wrkMode;
         private string scriptMode;
         private List<NonclusteredIndexDef> nonclusteredIndexes;
@@ -72,7 +72,7 @@ namespace DWScripter
             dbTables = new List<TableDef>();
             dbstruct = new DBStruct();
         }
-        public PDWscripter(string system, string server, string sourceDb, string authentication, string userName, string pwd, string wrkMode, string ExcludeObjectSuffixList, string filterSpec, string scriptMode, string CommandTimeout)
+        public PDWscripter(string system, string server, string sourceDb, string authentication, string userName, string pwd, string wrkMode, string ExcludeObjectSuffixList, string filterSpec, string scriptMode, int? CommandTimeout)
         {
             DatabaseName = sourceDb;
             cols = new List<ColumnDef>();
@@ -121,9 +121,9 @@ namespace DWScripter
 
             cmd = new System.Data.SqlClient.SqlCommand();
             //sets non default timeout
-            if(!String.IsNullOrEmpty(this.CommandTimeout))
+            if(this.CommandTimeout.HasValue)
             {
-                cmd.CommandTimeout = Convert.ToInt32(this.CommandTimeout);
+                cmd.CommandTimeout = this.CommandTimeout.Value;
 
             }
             Console.WriteLine("Current Command Timeout: " + cmd.CommandTimeout);
