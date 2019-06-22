@@ -114,6 +114,9 @@ namespace DWScripter
             PDWscripter c = null;
             PDWscripter cTarget = null;
             Boolean SourceFromFile = false;
+
+            int? commandTimeout = GetCommandTimeout(CommandTimeout);
+
             try
             {
                 if (mode == "FULL" || mode == "DELTA" || mode == "COMPARE" || mode == "PERSISTSTRUCTURE")
@@ -122,7 +125,7 @@ namespace DWScripter
                     {
                         filterSpec = featureToScript;
                     }
-                    c = new PDWscripter(system, server, sourceDb, authentication, userName, pwd, wrkMode, ExcludeObjectSuffixList, filterSpec, mode, CommandTimeout);
+                    c = new PDWscripter(system, server, sourceDb, authentication, userName, pwd, wrkMode, ExcludeObjectSuffixList, filterSpec, mode, commandTimeout);
                     if (mode == "PERSISTSTRUCTURE")
                         // populate dbstruct class
                         c.getDbstructure(outFile, wrkMode, true);
@@ -187,7 +190,7 @@ namespace DWScripter
                         Console.WriteLine("Filter settings OK");
                     }
 
-                        cTarget = new PDWscripter(system, serverTarget, TargetDb, authentication, userNameTarget, pwdTarget, wrkMode, "%", filterSpec, mode,CommandTimeout);
+                        cTarget = new PDWscripter(system, serverTarget, TargetDb, authentication, userNameTarget, pwdTarget, wrkMode, "%", filterSpec, mode, commandTimeout);
                         Console.WriteLine("Target Connection Opened");
                         cTarget.getDbstructure(outFile, wrkMode, false);
                         if (mode != "COMPAREFROMFILE")
@@ -313,10 +316,43 @@ namespace DWScripter
                         Environment.Exit(1);
                     }
                 }
-            }   
+            }
+
+            if (parameters.ContainsKey("-t"))
+            {
+	            int? commandTimeout = GetCommandTimeout(parameters["-t"]);
+            }
+
             return parameters;
         }
 
-    }
+        private static int? GetCommandTimeout(string rawCommandTimeout)
+        {
+	        int? returnValue = null;
+
+			if (string.IsNullOrWhiteSpace(rawCommandTimeout))
+	        {
+		        if (int.TryParse(rawCommandTimeout, out int parsedValue) == false)
+		        {
+			        Console.WriteLine("Argument -t must be numeric");
+                }
+		        else
+		        {
+			        if (parsedValue < 0)
+			        {
+				        Console.WriteLine("Argument -t must be a positive number");
+			        }
    
+			        returnValue = parsedValue;
+		        }
+	        }
+
+            if (returnValue.HasValue == false)
+            {
+                Environment.Exit(1);
+            }
+
+			return returnValue;
+        }
+    }
 }
